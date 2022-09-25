@@ -1,2 +1,2 @@
-# lista_de_tarefas
-Sistemas de Lista de Tarefas
+# lista_tarefas
+Sistemas de Lista de Tarefas (CRUD)
