@@ -25,9 +25,6 @@ else{
 <form method="POST" action="editar_action.php">
     <input type="hidden" name="id" value="<?=$tarefa['id'];?>"/>
     <label>
-        ID: <input type="number" name="id" value="<?=$tarefa['id'];?>"/>
-    </label>
-    <label>
         Ordem: <input type="number" name="ordem" value="<?=$tarefa['ordem'];?>"/>
     </label>
     <label>

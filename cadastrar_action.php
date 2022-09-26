@@ -13,7 +13,7 @@ if($ordem && $nome && $custo && $prazo){
     $sql->execute();
 
     if($sql->rowCount() === 0){
-        $sql = $pdo->prepare("INSERT INTO tarefa(ordem, nome, custo, prazo) VALUES(:id, :ordem, :nome, :custo, :prazo)");
+        $sql = $pdo->prepare("INSERT INTO tarefa(ordem, nome, custo, prazo) VALUES(:ordem, :nome, :custo, :prazo)");
         $sql->bindValue(':ordem', $ordem);
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':custo', $custo);
