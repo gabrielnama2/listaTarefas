@@ -35,13 +35,7 @@ else{
     <form method="POST" action="editar_action.php">
         <input type="hidden" name="id" value="<?=$tarefa['id'];?>"/>
         <label>
-            Nome: <input type="text" name="nome" value="<?=$tarefa['nome'];?>"/>
-        </label>
-        <label>
-            Custo (R$): <input type="number" name="custo" value="<?=$tarefa['custo'];?>"/>
-        </label>
-        <label>
-            Prazo: <input type="date" name="prazo" value="<?=$tarefa['prazo'];?>"/>
+            Ordem: <input type="text" name="ordem" value="<?=$tarefa['ordem'];?>"/>
         </label>
         <br><br>
         <input class="btn btn-primary" type="submit" value="Atualizar">

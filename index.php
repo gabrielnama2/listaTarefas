@@ -37,11 +37,12 @@ if($sql->rowCount() > 0){
                 <td><?=$tarefa['prazo'];?></td>
                 <td>
 
-                <!--Excluir-->
-                <a href="editar.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-info">Editar</button></a>
-
+                <!--Editar-->
+                <a href="editar.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-outline-info">Editar</button></a>
+                <!--Editar Ordem-->
+                <a href="editar_ordem.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-outline-warning">Editar Ordem</button></a>
                 <!-- Modal para excluir -->
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,7 +59,7 @@ if($sql->rowCount() > 0){
                     </div>
                     <div class="modal-footer">
                         <a href="excluir.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-danger">Excluir</button></a>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                     </div>
                 </div>

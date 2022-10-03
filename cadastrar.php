@@ -14,7 +14,7 @@
             Nome: <input type="text" name="nome">
         </label>
         <label>
-            Custo: <input type="number" name="custo">
+            Custo (R$): <input type="number" name="custo">
         </label>
         <label>
             Prazo: <input type="date" name="prazo">
