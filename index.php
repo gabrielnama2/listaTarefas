@@ -9,7 +9,6 @@ if($sql->rowCount() > 0){
 }
 ?>
 
-
 <!-- Bootstrap-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -37,12 +36,26 @@ if($sql->rowCount() > 0){
                 <td><?=$tarefa['prazo'];?></td>
                 <td>
 
+                <!--Subir Ordem-->
+                <form class="d-inline" method="POST" action="editar_action.php">
+                    <input type="hidden" name="id" value="<?=$tarefa['id'];?>"/>
+                    <input type="hidden" name="ordem" value="<?=$tarefa['ordem']-1;?>"/>
+                    <button id="botao-ordem" type="submit" class="btn btn-outline-info"><img width="30" src="https://cdn-icons-png.flaticon.com/512/3148/3148343.png" alt="Botão subir"></button>
+                </form>
+
+                <!--Descer Ordem-->
+
+                <form class="d-inline" method="POST" action="editar_action.php">
+                    <input type="hidden" name="id" value="<?=$tarefa['id'];?>"/>
+                    <input type="hidden" name="ordem" value="<?=$tarefa['ordem']+1;?>"/>
+                    <button id="botao-ordem" type="submit" class="btn btn-outline-danger"><img width="30" src="https://cdn-icons-png.flaticon.com/512/3148/3148295.png" alt="Botão descer"></button>
+                </form>
+
                 <!--Editar-->
-                <a href="editar.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-outline-info">Editar</button></a>
-                <!--Editar Ordem-->
-                <a href="editar_ordem.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-outline-warning">Editar Ordem</button></a>
+                <a href="editar.php?id=<?=$tarefa['id'];?>"><button type="button" class="btn btn-info">Editar</button></a>
+
                 <!-- Modal para excluir -->
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

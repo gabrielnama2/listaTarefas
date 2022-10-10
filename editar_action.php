@@ -4,6 +4,7 @@ require 'config.php';
 //Busca o ID do usuário a ser editado
 $id = filter_input(INPUT_POST, 'id');
 $ordem = filter_input(INPUT_POST, 'ordem');
+//$ordem-1;
 $nome = filter_input(INPUT_POST, 'nome');
 $custo = filter_input(INPUT_POST, 'custo');
 $prazo = filter_input(INPUT_POST, 'prazo');
