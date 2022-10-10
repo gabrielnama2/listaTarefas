@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sistema_tarefas`
 --
-CREATE SCHEMA `sistema_tarefas` utf8mb4_unicode_ci;
+CREATE SCHEMA `sistema_tarefas` ;
 
 --
 -- Estrutura da tabela `tarefa`
@@ -35,16 +35,6 @@ CREATE TABLE `tarefa` (
   `custo` double NOT NULL,
   `prazo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `tarefa`
---
-
-INSERT INTO `tarefa` (`id`, `ordem`, `nome`, `custo`, `prazo`) VALUES
-(1, 1, 'Teste', 10, '2022-10-10'),
-(2, 2, 'Teste 01', 50, '2022-10-10'),
-(3, 3, 'Teste 02', 100, '2022-10-05'),
-(4, 4, 'Teste 03', 10, '2022-10-04');
 
 --
 -- Acionadores `tarefa`
@@ -77,6 +67,12 @@ ALTER TABLE `tarefa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Extraindo dados da tabela `tarefa`
+--
+
+INSERT INTO `tarefa` (`id`, `ordem`, `nome`, `custo`, `prazo`) VALUES
+(1, 1, 'Alterar design para Editar', 100, '2022-10-10'),
+(2, 2, 'Mudar a cor dos botões', 50, '2022-10-10'),
+(3, 3, 'Atualizar o BD', 150, '2022-10-05'),
+(4, 4, 'Depurar o código', 200, '2022-10-04');
