@@ -28,10 +28,8 @@ Git clone https://github.com/gabrielnama2/lista_tarefas.git
 
 Um sistema simples para controle de tarefas, permitindo adicionar, editar, remover e reordenar uma tarefa. O enunciado está disponível <a href="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/enunciado/(Requisitos) Sistema Lista de Tarefas.pdf" target=_blank>aqui</a>.
 <br><br>
-<p align="center">
+<div align="center">
   <img alt="Design do Sistema" width="600" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
-</p>
+</div>
 
-<h5 align="center">
-  ©	2022 - Gabriel Namã
-</h5>
+O CRUD foi baseado na playlist de Kane Chan, o link se encontra <a href="https://www.youtube.com/playlist?list=PLXbKgo5jPQE-hiDPpimuEU_VmrXfnvD65" target=_blank>aqui</a>.
