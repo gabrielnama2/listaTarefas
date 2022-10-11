@@ -31,3 +31,4 @@ else{
     header("Location: cadastrar.php");
     exit;
 }
+?>
