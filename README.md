@@ -13,15 +13,15 @@
 
 ## :information_source: Instalação
 
-1 - Clone este projeto:
+<b>1</b> - Clone este projeto:
 
 ```
 Git clone https://github.com/gabrielnama2/lista_tarefas.git
 ```
 
-2 - As informações do Banco de Dados estão no arquivo <b>"bando_de_dados.sql"</b>.
+<b>2</b> - As informações do Banco de Dados estão no arquivo <b>"bando_de_dados.sql"</b>.
 
-3 - Inicie o seu Servidor Web e acesse o arquivo <b>"index.php"</b>.
+<b>3</b> - Inicie o seu Servidor Web e acesse o arquivo <b>"index.php"</b>.
 
 
 ## :rocket: Sobre o Projeto
