@@ -8,7 +8,7 @@
 
 <p align="center" direction="row">
   <a href="#information_source-instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="#rocket-sobre-o-projeto">Sobre o projeto</a>
+  <a href="#rocket-sobre-o-projeto">Sobre o Projeto</a>
 </p>
 
 ## :information_source: Instalação
@@ -24,7 +24,7 @@ Git clone https://github.com/gabrielnama2/lista_tarefas.git
 3 - Inicie o seu Servidor Web e acesse o arquivo <b>"index.php"</b>.
 
 
-## :rocket: Sobre o projeto
+## :rocket: Sobre o Projeto
 
 Um sistema simples para controle de tarefas, permitindo adicionar, editar, remover e reordenar uma tarefa:
 <br><br>
