@@ -32,4 +32,6 @@ Um sistema simples para controle de tarefas, permitindo adicionar, editar, remov
   <img alt="Design do Sistema" width="600" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
 </div>
 
-O CRUD foi baseado na playlist de Kane Chan, o link se encontra <a href="https://www.youtube.com/playlist?list=PLXbKgo5jPQE-hiDPpimuEU_VmrXfnvD65" target=_blank>aqui</a>.
+<h5 align="center">
+  O CRUD foi baseado na playlist de Kane Chan, o link se encontra <a href="https://www.youtube.com/playlist?list=PLXbKgo5jPQE-hiDPpimuEU_VmrXfnvD65" target=_blank>aqui</a>.
+</h5>
