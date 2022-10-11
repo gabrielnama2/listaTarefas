@@ -3,7 +3,7 @@
 </h1>
 
 <h5 align="center">
-  Projeto desenvolvido para o teste de Estágio em Desenvolvimento PHP na empresa Fatto - Consultoria e Sistemas.
+  Projeto desenvolvido para o teste de Estágio em Desenvolvimento PHP, na empresa Fatto - Consultoria e Sistemas.
 </h5>
 
 <p align="center" direction="row">
