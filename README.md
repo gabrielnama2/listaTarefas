@@ -1,5 +1,5 @@
 <h1 align="center">
-    Sistemas de Tarefas
+    Sistema de Tarefas
 </h1>
 
 <h5 align="center">
