@@ -13,7 +13,7 @@
 
 ## :information_source: Instalação
 
-<b>1</b> - Clone este projeto:
+<b>1</b> - Clone o projeto:
 
 ```
 Git clone https://github.com/gabrielnama2/lista_tarefas.git
