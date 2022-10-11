@@ -38,7 +38,7 @@ else{
             Nome: <input type="text" name="nome" value="<?=$tarefa['nome'];?>"/>
         </label>
         <label>
-            Custo (R$): <input type="number" name="custo" value="<?=$tarefa['custo'];?>"/>
+            Custo (R$): <input type="decimal" name="custo" value="<?=$tarefa['custo'];?>"/>
         </label>
         <label>
             Prazo: <input type="date" name="prazo" value="<?=$tarefa['prazo'];?>"/>

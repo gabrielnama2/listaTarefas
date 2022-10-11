@@ -29,11 +29,29 @@ if($sql->rowCount() > 0){
             <th>Opções</th>
         </tr>
         <?php foreach($lista as $tarefa):?>
+            
             <tr>
                 <td><?=$tarefa['id'];?></td>
                 <td><?=$tarefa['nome'];?></td>
-                <td><?=$tarefa['custo'];?></td>
+
+                <!--Condição de cor-->
+                <script>
+                    var custo = <?=$tarefa['custo'];?>;
+                    document.write("<td id=cor-custo><?=$tarefa['custo'];?></td>");
+                    var valor = document.getElementById("cor-custo");
+
+                    if(valor.innerHTML >= 1000){
+                        console.log(custo);
+                        valor.style.backgroundColor="#FF0000";
+                    }
+                    else{
+                        valor.style.backgroundColor="#1e1e1e";
+                    }
+                </script>
+
                 <td><?=$tarefa['prazo'];?></td>
+
+                <!--Opções-->
                 <td>
 
                 <!--Subir Ordem-->
