@@ -26,8 +26,9 @@ Git clone https://github.com/gabrielnama2/lista_tarefas.git
 
 ## :rocket: Sobre o Projeto
 
-Um sistema simples para controle de tarefas, permitindo adicionar, editar, remover e reordenar uma tarefa. O enunciado está disponível <a href="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/enunciado/(Requisitos) Sistema Lista de Tarefas.pdf" target=_blank>aqui</a>.
+Um sistema simples para controle de tarefas, permitindo <b>adicionar, editar, remover e reordenar</b> uma tarefa. O enunciado está disponível <a href="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/enunciado/(Requisitos) Sistema Lista de Tarefas.pdf" target=_blank>aqui</a>.
 <br><br>
+
 <div align="center">
   <img alt="Design do Sistema" width="600" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
 </div>
