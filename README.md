@@ -27,7 +27,7 @@ Git clone https://github.com/gabrielnama2/lista_tarefas.git
 ## :rocket: Sobre o projeto
 
 Um sistema simples para controle de tarefas, permitindo adicionar, editar, remover e reordenar uma tarefa:
-</br>
+<br><br>
 <p align="center">
   <img alt="Design do Sistema" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
 </p>
