@@ -19,8 +19,7 @@ if ($id) {
         $tarefa = $sql->fetch(PDO::FETCH_ASSOC);
     }
 }
-function data($data)
-{
+function data($data){
     return date("d/m/Y", strtotime($data));
 }
 ?>
@@ -35,6 +34,7 @@ function data($data)
     <title>Lista de Tarefas</title>
     <!-- Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -53,14 +53,15 @@ function data($data)
                 <th>Prazo</th>
                 <th>Opções</th>
             </tr>
+
             <!--Lista as tarefas-->
             <?php foreach ($lista as $tarefa) : ?>
-                <tr>
+                <tr data-tarefa="<?= $tarefa['id']; ?>">
                     <td><?= $tarefa['id']; ?></td>
-                    <td><?= $tarefa['nome']; ?></td>
+                    <td class="nome"><?= $tarefa['nome']; ?></td>
                     <!-- =number_format($tarefa['custo'], 2, ',', '.'); -->
-                    <td class="cor-custo"><?= $tarefa['custo']; ?></td>
-                    <td><?= data($tarefa['prazo']) ?></td>
+                    <td class="custo cor-custo"><?= $tarefa['custo']; ?></td>
+                    <td class="prazo"><?= data($tarefa['prazo']) ?></td>
 
                     <!--Botões de Opções-->
                     <td>
@@ -80,11 +81,23 @@ function data($data)
 
                         <!--Editar-->
                         <a href="editar.php?id=<?= $tarefa['id']; ?>"><button type="button" class="btn btn-outline-info">Editar</button></a>
+                        
+                        <!-- Botão para excluir -->
+                        <button type="button" id="botao-opcoes" class="btn btn-info" onclick="chamaModal(<?= $tarefa['id']; ?>)"><img class="icon" width="30" src="img/editar.png" alt="Ícone Excluir"></button>
 
-                        <button type="button" id="botao-opcoes" class="btn btn-info" data-toggle="modal" data-target="#modal_editar"><img class="icon" width="30" src="img/editar.png" alt="Ícone Excluir"></button>
+                        <!-- Botão para excluir -->
+                        <button type="button" id="botao-opcoes" class="btn btn-danger" data-toggle="modal" data-target="#modal_excluir"><img class="icon" width="30" src="img/excluir.png" alt="Ícone Excluir"></button>
 
-                        <!--Modal para editar-->
-                        <div class="modal" id="modal_editar" tabindex="-1" role="dialog">
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <br>
+        <a href="cadastrar.php"><button type="button" class="btn btn-primary">Nova Tarefa</button></a>
+    </div>
+
+                <!--Modal para editar-->
+                <div class="modal" id="modal_editar" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -97,15 +110,15 @@ function data($data)
 
                                         <!--Formulário de edição-->
                                         <form method="POST" action="editar_action.php">
-                                            <input type="hidden" name="id" value="<?= $tarefa['id']; ?>" />
+                                            <input type="hidden" id="formulario" name="id" value="" />
                                             <label>
-                                                <b>Nome</b><br><input type="text" name="nome" value="<?= $tarefa['nome']; ?>" />
+                                                <b>Nome</b><br><input id="nome" type="text" name="nome" />
                                             </label><br>
                                             <label>
-                                                <b>Custo (R$)</b><br><input type="decimal" name="custo" value="<?= number_format($tarefa['custo'], 2, ',', '.'); ?>" />
+                                                <b>Custo (R$)</b><br><input id="custo" type="decimal" name="custo" />
                                             </label><br>
                                             <label>
-                                                <b>Prazo</b><br><input type="date" name="prazo" value="<?= $tarefa['prazo']; ?>" />
+                                                <b>Prazo</b><br><input id="prazo" type="date" name="prazo" />
                                             </label><br><br>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Atualizar</button>
@@ -118,10 +131,7 @@ function data($data)
                             </div>
                         </div>
 
-                        <!-- Modal para excluir -->
-                        <button type="button" id="botao-opcoes" class="btn btn-danger" data-toggle="modal" data-target="#modal_excluir"><img class="icon" width="30" src="img/excluir.png" alt="Ícone Excluir"></button>
-
-                        <!-- Modal -->
+                        <!-- Modal para excluir-->
                         <div class="modal fade" id="modal_excluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -141,13 +151,7 @@ function data($data)
                                 </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-        <br>
-        <a href="cadastrar.php"><button type="button" class="btn btn-primary">Nova Tarefa</button></a>
-    </div>
+
 </body>
 
 <!--Condição de cor-->
@@ -161,6 +165,18 @@ function data($data)
             }
         }
     }
+    //Query de JQuery
+    function chamaModal(id){
+        var nome = $(`tr[data-tarefa=${id}] td.nome`).text();
+        var custo = $(`tr[data-tarefa=${id}] td.custo`).text();
+        var prazo = $(`tr[data-tarefa=${id}] td.prazo`).text();
+        $('#formulario').val(id);
+        $('#nome').val(nome);
+        $('#custo').val(custo);
+        $('#prazo').val(prazo);
+        $('#modal_editar').modal('show');
+    }
+
 </script>
 
 </html>
