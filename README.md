@@ -31,7 +31,6 @@ Um sistema simples para controle de tarefas, permitindo adicionar, editar, remov
 <p align="center">
   <img alt="Design do Sistema" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
 </p>
-</br>
 
 <h5 align="center">
   ©	2022 - Gabriel Namã
