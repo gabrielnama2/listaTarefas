@@ -1,6 +1,6 @@
 <?php
 require 'config.php';
-
+//Recebe os valor via POST
 $ultima_tarefa = ("SELECT COUNT(*) FROM tarefa;");
 $id = filter_input(INPUT_POST, 'id');
 $ordem = filter_input(INPUT_POST, 'ordem');
@@ -8,7 +8,7 @@ $nome = filter_input(INPUT_POST, 'nome');
 $custo = filter_input(INPUT_POST, 'custo');
 $prazo = filter_input(INPUT_POST, 'prazo');
 
-//Editar tarefas
+//Edita os dados da tarefa selecionada
 if($id && $nome!="" && $custo && $prazo){
     $sql = $pdo->prepare("UPDATE tarefa SET nome = :nome, custo = :custo, prazo = :prazo WHERE id = :id");
     $sql->bindValue(':id', $id);
@@ -20,7 +20,7 @@ if($id && $nome!="" && $custo && $prazo){
     exit;
 }
 
-//Editar a ordem de apresentação
+//Troca a ordem de apresentação
 else if($ordem && $ordem<$ultima_tarefa){
     $sql = $pdo->prepare("SELECT id FROM tarefa WHERE ordem = :ordem");
     $sql->bindValue(':ordem', $ordem);
@@ -41,13 +41,13 @@ else if($ordem && $ordem<$ultima_tarefa){
     $sql->bindValue(':ordem', $ordem_substituir_na_antiga);
     $sql->bindValue(':id', $id_antiga_ordem);
     $sql->execute();
-
+    //Retorna para o início
     header("Location: index.php");
     exit;
 }
 
-//Retorna para o menu principal
 else{
+    //Retorna para o início
     header("Location: index.php");
     exit;
 }

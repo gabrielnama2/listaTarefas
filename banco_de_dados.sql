@@ -32,7 +32,7 @@ CREATE TABLE `tarefa` (
   `id` int(11) NOT NULL,
   `ordem` int(11) DEFAULT NULL,
   `nome` varchar(45) NOT NULL,
-  `custo` decima(20,2) NOT NULL,
+  `custo` decimal(20,2) NOT NULL,
   `prazo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -72,7 +72,7 @@ COMMIT;
 --
 
 INSERT INTO `tarefa` (`id`, `ordem`, `nome`, `custo`, `prazo`) VALUES
-(1, 1, 'Alterar design para Editar', 100, '2022-10-10'),
-(2, 2, 'Mudar a cor dos botões', 50, '2022-10-10'),
-(3, 3, 'Atualizar o BD', 150, '2022-10-05'),
-(4, 4, 'Depurar o código', 200, '2022-10-04');
+(1, 1, 'Alterar design do sistema', 750, '2022-10-10'),
+(2, 2, 'Mudar a cor dos botões', 500, '2022-10-10'),
+(3, 3, 'Atualizar o BD', 1500, '2022-10-05'),
+(4, 4, 'Depurar o código', 2000, '2022-10-04');

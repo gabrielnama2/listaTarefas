@@ -1,4 +1,5 @@
 <?php
+//O sistema está usando um Servidor Web Local (XAMPP)
 $db_name = 'sistema_tarefas';
 $db_host = 'localhost:3306';
 $db_user = 'root';
