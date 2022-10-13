@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
-//Busca a tarefa pelo seu ID
-$id = filter_input(INPUT_GET, 'id');
+//Recebe a ser excuída tarefa pelo seu ID
+$id = filter_input(INPUT_POST,'id');
 if ($id) {
     $sql = $pdo->prepare("DELETE FROM tarefa WHERE id = :id");
     $sql->bindValue(':id', $id);

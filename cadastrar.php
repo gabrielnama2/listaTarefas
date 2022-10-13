@@ -16,7 +16,7 @@
     <link href="./style.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark text-white">
     <div class="container">
         <h1>Nova Tarefa</h1>
         <form method="POST" action="cadastrar_action.php">

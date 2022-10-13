@@ -25,16 +25,16 @@ if ($sql->rowCount() > 0) {
     <link href="./style.css" rel="stylesheet">
 </head>
 
-<body onload="corCusto()">
+<body class="bg-dark text-white" onload="corCusto()">
     <div class="container">
         <h1>Lista de Tarefas</h1>
-        <table border="1">
-            <tr id="tabela">
+        <table id="tabela" class="table table-bordered">
+            <tr>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Custo (R$)</th>
                 <th>Prazo</th>
-                <th>Opções</th>
+                <th id="opcoes">Opções</th>
             </tr>
 
             <!--Lista as Tarefas-->
@@ -51,21 +51,21 @@ if ($sql->rowCount() > 0) {
                         <form class="d-inline" method="POST" action="editar_action.php">
                             <input type="hidden" name="id" value="<?= $tarefa['id']; ?>" />
                             <input type="hidden" name="ordem" value="<?= $tarefa['ordem'] - 1; ?>" />
-                            <button type="submit" id="botao-opcoes" class="btn btn-outline-dark"><img width="30" src="img/cima.png" alt="Botão subir"></button>
+                            <button type="submit" id="botao-opcoes-ordem" class="btn btn-outline-dark"><img width="30" src="img/cima.png" alt="Botão subir"></button>
                         </form>
 
                         <!--Descer Ordem-->
                         <form class="d-inline" method="POST" action="editar_action.php">
                             <input type="hidden" name="id" value="<?= $tarefa['id']; ?>" />
                             <input type="hidden" name="ordem" value="<?= $tarefa['ordem'] + 1; ?>" />
-                            <button type="submit" id="botao-opcoes" class="btn btn-outline-dark"><img width="30" src="img/baixo.png" alt="Botão descer"></button>
+                            <button type="submit" id="botao-opcoes-ordem" class="btn btn-outline-dark"><img width="30" src="img/baixo.png" alt="Botão descer"></button>
                         </form>
 
                         <!-- Editar Tarefa -->
-                        <button type="button" id="botao-opcoes" class="btn btn-info" onclick="abreModal(<?= $tarefa['id']; ?>)"><img class="icon" width="30" src="img/editar.png" alt="Ícone Editar"></button>
+                        <button type="button" id="botao-opcoes" class="btn btn-info" onclick="abrirModalEditar(<?= $tarefa['id']; ?>)"><img class="icon" width="30" src="img/editar.png" alt="Ícone Editar"></button>
 
                         <!-- Excluir Tarefa -->
-                        <button type="button" id="botao-opcoes" class="btn btn-danger" data-toggle="modal" data-target="#modal_excluir"><img class="icon" width="30" src="img/excluir.png" alt="Ícone Excluir"></button>
+                        <button type="button" id="botao-opcoes" data-id="<?= $tarefa['id']; ?>" class="btn btn-danger" onclick="abrirModalExcluir(<?= $tarefa['id']; ?>)" data-toggle="modal" data-target="#modal_excluir"><img class="icon" width="30" src="img/excluir.png" alt="Ícone Excluir"></button>
 
                     </td>
                 </tr>
@@ -89,7 +89,7 @@ if ($sql->rowCount() > 0) {
 
                     <!--Formulário de edição-->
                     <form method="POST" action="editar_action.php">
-                        <input type="hidden" id="formulario" name="id" value="" />
+                        <input type="hidden" id="form_editar" name="id" value="" />
                         <label>
                             <b>Nome</b><br><input id="nome" type="text" name="nome" />
                         </label><br>
@@ -124,11 +124,16 @@ if ($sql->rowCount() > 0) {
                     Tem certeza, a tarefa será excluída permanentemente?
                 </div>
                 <div class="modal-footer">
-                    <a href="excluir.php?id=<?= $tarefa['id']; ?>"><button type="button" class="btn btn-danger">Excluir</button></a>
-                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                    <!--Formulário de edição-->
+                    <form method="POST" action="excluir.php">
+                        <input type="hidden" id="id" name="id" value="" />
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
 </body>
@@ -136,24 +141,30 @@ if ($sql->rowCount() > 0) {
 <!--Modifica a cor do texto para custo-->
 <script>
     function corCusto() {
-        var tds = document.getElementsByClassName("cor-custo");
+        var custo = document.getElementsByClassName("cor-custo");
         var i;
-        for (i = 0; i < tds.length; i++) {
-            if (tds[i].innerHTML >= 1000) {
-                tds[i].style.color = "#17a2b8";
+        for (i= 0; i < custo.length; i++) {
+            if (custo[i].innerHTML >= 1000) {
+                custo[i].style.color = "#00FFFF";
             }
         }
     }
-    //Envia os valores dos atributos para edição no formulário
-    function abreModal(id) {
+    //Envia os dados da tarefas para edição
+    function abrirModalEditar(id) {
         var nome = $(`tr[data-tarefa=${id}] td.nome`).text();
         var custo = $(`tr[data-tarefa=${id}] td.custo`).text();
         var prazo = $(`tr[data-tarefa=${id}] td.prazo`).text();
-        $('#formulario').val(id);
+        //Dados da tarefa para editar
+        $('#form_editar').val(id);
         $('#nome').val(nome);
         $('#custo').val(custo);
         $('#prazo').val(prazo);
         $('#modal_editar').modal('show');
+    }
+    //Envia o ID da tarefa para excluir
+    function abrirModalExcluir(id) {
+        $('#id').val(id);
+        $('#modal_xcluir').modal('show');
     }
 </script>
 

@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 //Recebe os valor via POST
-$ultima_tarefa = ("SELECT COUNT(*) FROM tarefa;");
+$ultima_tarefa = "SELECT MAX(ordem) FROM tarefa;";
 $id = filter_input(INPUT_POST, 'id');
 $ordem = filter_input(INPUT_POST, 'ordem');
 $nome = filter_input(INPUT_POST, 'nome');
@@ -21,7 +21,8 @@ if($id && $nome!="" && $custo && $prazo){
 }
 
 //Troca a ordem de apresentação
-else if($ordem && $ordem<$ultima_tarefa){
+else if($ordem>0){
+    echo($ultima_tarefa);
     $sql = $pdo->prepare("SELECT id FROM tarefa WHERE ordem = :ordem");
     $sql->bindValue(':ordem', $ordem);
     $sql->execute();
@@ -32,7 +33,7 @@ else if($ordem && $ordem<$ultima_tarefa){
     $sql->execute();
     $ordem_substituir_na_antiga = $sql->fetchColumn();
 
-    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id");
+    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id AND ordem < (SELECT MAX(id) FROM tarefa);");
     $sql->bindValue(':ordem', $ordem);
     $sql->bindValue(':id', $id);
     $sql->execute();

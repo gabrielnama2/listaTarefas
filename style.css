@@ -4,19 +4,34 @@ body {
 }
 
 #tabela{
-    text-align: center;
+    border: solid white 1 px;
+    border-radius: 25px !important;
 }
 
-#modal_excluir, #modal_editar {
+#botao-opcoes-ordem {
+    border: solid white 1px;
+}
+
+#tabela, td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+#opcoes {
+    width: 25%;
+}
+
+#modal_excluir,
+#modal_editar {
     color: black;
     text-align: center;
 }
 
-#modal_editar{
+#modal_editar {
     text-align: center;
 }
 
-#botao-opcoes:hover{
+#botao-opcoes:hover, #botao-opcoes-ordem:hover {
     transform: scale(1.2);
 }
 
