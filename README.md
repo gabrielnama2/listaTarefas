@@ -30,7 +30,7 @@ Um sistema simples para controle de tarefas, permitindo <b>adicionar, editar, re
 <br><br>
 
 <div align="center">
-  <img alt="Design do Sistema" width="600" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/design_do_sistema.png">
+  <img alt="Design do Sistema" width="600" src="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/img/sistema_tarefas.gif">
 </div>
 
 <h5 align="center">
