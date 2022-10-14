@@ -1,17 +1,19 @@
 <?php
 require 'config.php';
-
-//Busca o ID do usuário a ser editado
+//Recebe os valores via POST
 $id = filter_input(INPUT_POST, 'id');
 $ordem = filter_input(INPUT_POST, 'ordem');
 $nome = filter_input(INPUT_POST, 'nome');
 $custo = filter_input(INPUT_POST, 'custo');
 $prazo = filter_input(INPUT_POST, 'prazo');
 
-if($id && $ordem && $nome && $custo && $prazo){
-    $sql = $pdo->prepare("UPDATE tarefa SET id = :id, ordem = :ordem, nome = :nome, custo = :custo, prazo = :prazo WHERE id = :id");
+$sql = $pdo->query("SELECT COUNT(id) FROM tarefa");
+$qtd_tarefas = $sql->fetchColumn();
+
+//Edita os dados da tarefa selecionada
+if ($id && $nome != "" && $custo && $prazo) {
+    $sql = $pdo->prepare("UPDATE tarefa SET nome = :nome, custo = :custo, prazo = :prazo WHERE id = :id");
     $sql->bindValue(':id', $id);
-    $sql->bindValue(':ordem', $ordem);
     $sql->bindValue(':nome', $nome);
     $sql->bindValue(':custo', $custo);
     $sql->bindValue(':prazo', $prazo);
@@ -19,7 +21,33 @@ if($id && $ordem && $nome && $custo && $prazo){
     header("Location: index.php");
     exit;
 }
-else{
+
+//Troca a ordem de apresentação
+else if ($ordem > 0 && $ordem <= $qtd_tarefas) {
+    $sql = $pdo->prepare("SELECT id FROM tarefa WHERE ordem = :ordem");
+    $sql->bindValue(':ordem', $ordem);
+    $sql->execute();
+    $id_antiga_ordem = $sql->fetchColumn();
+
+    $sql = $pdo->prepare("SELECT ordem FROM tarefa WHERE id = :id");
+    $sql->bindValue(':id', $id);
+    $sql->execute();
+    $ordem_substituir_na_antiga = $sql->fetchColumn();
+
+    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id AND ordem < (SELECT MAX(id) FROM tarefa);");
+    $sql->bindValue(':ordem', $ordem);
+    $sql->bindValue(':id', $id);
+    $sql->execute();
+
+    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id");
+    $sql->bindValue(':ordem', $ordem_substituir_na_antiga);
+    $sql->bindValue(':id', $id_antiga_ordem);
+    $sql->execute();
+    //Retorna para o início
+    header("Location: index.php");
+    exit;
+} else {
+    //Retorna para o início
     header("Location: index.php");
     exit;
 }

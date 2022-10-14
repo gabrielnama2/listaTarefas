@@ -1,0 +1,50 @@
+#tabela {
+    border: solid white 1 px;
+    border-radius: 25px !important;
+}
+
+#botao-opcoes-ordem {
+    border: solid white 1px;
+}
+
+#tabela,
+td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+#opcoes {
+    width: 25%;
+}
+
+#modal_excluir,
+#modal_editar {
+    color: black;
+    text-align: center;
+}
+
+#modal_editar {
+    text-align: center;
+}
+
+#botao-opcoes:hover,
+#botao-opcoes-ordem:hover {
+    transform: scale(1.2);
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    padding: 15px;
+    text-align: center;
+}
