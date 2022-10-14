@@ -7,7 +7,7 @@ $ordem = filter_input(INPUT_POST, 'ordem');
 $sql = $pdo->query("SELECT COUNT(id) FROM tarefa");
 $qtd_tarefas = $sql->fetchColumn();
 
-//Move a tarefa para o último lugar da lista
+//Move a tarefa para última, antes de excluir
 while ($ordem <= $qtd_tarefas) {
     $sql = $pdo->prepare("SELECT id FROM tarefa WHERE ordem = :ordem");
     $sql->bindValue(':ordem', $ordem);
