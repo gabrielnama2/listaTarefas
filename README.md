@@ -3,7 +3,7 @@
 </h1>
 
 <h5 align="center">
-  Projeto desenvolvido para o teste de Estágio em Desenvolvimento PHP, na empresa Fatto - Consultoria e Sistemas.
+  Projeto desenvolvido para o teste de Estágio em Desenvolvimento PHP na empresa Fatto - Consultoria e Sistemas.
 </h5>
 
 <p align="center" direction="row">
@@ -26,7 +26,7 @@ Git clone https://github.com/gabrielnama2/lista_tarefas.git
 
 ## :rocket: Sobre o Projeto
 
-Um sistema simples para controle de tarefas, permitindo <b>adicionar, editar, remover e reordenar</b> uma tarefa. O enunciado está disponível <a href="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/enunciado/(Requisitos)%20Sistema%20Lista%20de%20Tarefas.pdf" target=_blank>aqui</a>.
+Um sistema simples para controle de tarefas, permitindo <b>adicionar, editar, remover e reordenar</b> uma tarefa. O enunciado está disponível <a href="https://github.com/gabrielnama2/lista_tarefas/blob/gabriel/enunciado/(Requisitos)%20Sistema%20Lista%20de%20Tarefas.pdf" target="_blank">aqui</a>.
 <br><br>
 
 <div align="center">
@@ -34,5 +34,5 @@ Um sistema simples para controle de tarefas, permitindo <b>adicionar, editar, re
 </div>
 
 <h5 align="center">
-  O CRUD foi baseado na playlist de Kane Chan, o link se encontra <a href="https://www.youtube.com/playlist?list=PLXbKgo5jPQE-hiDPpimuEU_VmrXfnvD65" target=_blank>aqui</a>.
+  O CRUD foi baseado na playlist de Kane Chan, o link se encontra <a href="https://www.youtube.com/playlist?list=PLXbKgo5jPQE-hiDPpimuEU_VmrXfnvD65" target="_blank">aqui</a>.
 </h5>
