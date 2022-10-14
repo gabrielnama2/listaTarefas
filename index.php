@@ -1,10 +1,12 @@
 <?php
 require 'config.php';
 $lista = [];
+$data = [];
 $sql = $pdo->query("SELECT * FROM tarefa ORDER BY ordem");
 if ($sql->rowCount() > 0) {
     $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +17,11 @@ if ($sql->rowCount() > 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas</title>
-    <!-- Bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!--CSS local-->
@@ -41,6 +44,8 @@ if ($sql->rowCount() > 0) {
             <?php foreach ($lista as $tarefa) : ?>
                 <tr data-tarefa="<?= $tarefa['id']; ?>">
                     <td><?= $tarefa['id']; ?></td>
+                    <!--Não exibie a ordem-->
+                    <td class="ordem d-none"><?= ($tarefa['ordem']) ?></td>
                     <td class="nome"><?= $tarefa['nome']; ?></td>
                     <td class="custo cor-custo"><?= $tarefa['custo']; ?></td>
                     <td class="prazo"><?= ($tarefa['prazo']) ?></td>
@@ -85,20 +90,26 @@ if ($sql->rowCount() > 0) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
 
                     <!--Formulário de edição-->
                     <form method="POST" action="editar_action.php">
-                        <input type="hidden" id="form_editar" name="id" value="" />
-                        <label>
-                            <b>Nome</b><br><input id="nome" type="text" name="nome" />
-                        </label><br>
-                        <label>
-                            <b>Custo (R$)</b><br><input id="custo" type="decimal" name="custo" />
-                        </label><br>
-                        <label>
-                            <b>Prazo</b><br><input id="prazo" type="date" name="prazo" />
-                        </label><br><br>
+                        <input type="hidden" id="form_editar" name="id" />
+                        <div class="container-md" id="formulario_editar">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    <label>Nome: </label><input class="form-control" id="nome" type="text" name="nome" /><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 offset-md-1">
+                                    <label>Custo (R$)</label><input class="form-control" id="custo" type="decimal" name="custo" /><br>
+                                </div>
+                                <div class="col-md-5 offset-md">
+                                    <label>Prazo</label><input class="form-control" id="prazo" type="date" name="prazo" /><br>
+                                </div>
+                            </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Atualizar</button>
                             <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
@@ -124,9 +135,10 @@ if ($sql->rowCount() > 0) {
                     Tem certeza, a tarefa será excluída permanentemente?
                 </div>
                 <div class="modal-footer">
-                    <!--Formulário de edição-->
+                    <!--Formulário de exclusão-->
                     <form method="POST" action="excluir.php">
-                        <input type="hidden" id="id" name="id" value="" />
+                        <input type="hidden" id="id" name="id" />
+                        <input type="hidden" id="ordem" name="ordem" />
                         <button type="submit" class="btn btn-danger">Excluir</button>
                         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
                 </div>
@@ -138,17 +150,21 @@ if ($sql->rowCount() > 0) {
 
 </body>
 
-<!--Modifica a cor do texto para custo-->
+<!--Modifica a cor do texto para custo acima de mil reais-->
 <script>
     function corCusto() {
+        $("#custo").keypress(function() {
+            $(this).mask('R$ 999.990,00');
+        });
         var custo = document.getElementsByClassName("cor-custo");
         var i;
-        for (i= 0; i < custo.length; i++) {
+        for (i = 0; i < custo.length; i++) {
             if (custo[i].innerHTML >= 1000) {
                 custo[i].style.color = "#00FFFF";
             }
         }
     }
+
     //Envia os dados da tarefas para edição
     function abrirModalEditar(id) {
         var nome = $(`tr[data-tarefa=${id}] td.nome`).text();
@@ -163,7 +179,9 @@ if ($sql->rowCount() > 0) {
     }
     //Envia o ID da tarefa para excluir
     function abrirModalExcluir(id) {
+        var ordem = $(`tr[data-tarefa=${id}] td.ordem`).text();
         $('#id').val(id);
+        $('#ordem').val(ordem);
         $('#modal_xcluir').modal('show');
     }
 </script>
