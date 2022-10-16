@@ -1,12 +1,10 @@
 <?php
 require 'config.php';
 $lista = [];
-$data = [];
 $sql = $pdo->query("SELECT * FROM tarefa ORDER BY ordem");
 if ($sql->rowCount() > 0) {
     $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
-
 ?>
 
 <!DOCTYPE html>

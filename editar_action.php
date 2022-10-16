@@ -34,7 +34,7 @@ else if ($ordem > 0 && $ordem <= $qtd_tarefas) {
     $sql->execute();
     $ordem_substituir_na_antiga = $sql->fetchColumn();
 
-    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id AND ordem < (SELECT MAX(id) FROM tarefa);");
+    $sql = $pdo->prepare("UPDATE tarefa SET ordem = :ordem WHERE id = :id");
     $sql->bindValue(':ordem', $ordem);
     $sql->bindValue(':id', $id);
     $sql->execute();
