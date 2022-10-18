@@ -96,12 +96,12 @@ if ($sql->rowCount() > 0) {
                         <div class="container-md" id="formulario_editar">
                             <div class="row">
                                 <div class="col-md-10 offset-md-1">
-                                    <label>Nome: </label><input required class="form-control" id="nome" type="text" name="nome" /><br>
+                                    <label>Nome: </label><input required maxlength="30" class="form-control" id="nome" type="text" name="nome" /><br>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 offset-md-1">
-                                    <label>Custo (R$)</label><input required class="form-control" id="custo" type="decimal" name="custo" onkeypress="$(this).mask('##0,00', {reverse: true});" />
+                                    <label>Custo (R$)</label><input required class="form-control" id="custo" type="decimal" name="custo" onkeypress="$(this).mask('0000000.00', {reverse: true});" />
                                     <br>
                                 </div>
                                 <div class="col-md-5 offset-md">

@@ -14,6 +14,7 @@ $qtd_tarefas = $sql->fetchColumn();
 
 //Valida o custo
 if ($custo < 0) {
+    echo("");
     echo "<script>alert('Seu custo não pode ser negativo.');location.href=\"index.php\";</script>";
     exit;
     //header("Location: index.php");
@@ -72,9 +73,3 @@ else if ($ordem > 0 && $ordem <= $qtd_tarefas) {
     exit;
 }
 ?>
-
-<script>
-    function funcao() {
-        alert("Hello Word!");
-    }
-</script>
