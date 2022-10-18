@@ -31,7 +31,7 @@ USE sistema_tarefas;
 CREATE TABLE `tarefa` (
   `id` int(11) NOT NULL,
   `ordem` int(11) DEFAULT NULL,
-  `nome` varchar(45) NOT NULL,
+  `nome` varchar(45) NOT NULL UNIQUE,
   `custo` decimal(20,2) NOT NULL,
   `prazo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

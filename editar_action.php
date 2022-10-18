@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+
 //Recebe os valores via POST
 $id = filter_input(INPUT_POST, 'id');
 $ordem = filter_input(INPUT_POST, 'ordem');
@@ -7,8 +8,28 @@ $nome = filter_input(INPUT_POST, 'nome');
 $custo = filter_input(INPUT_POST, 'custo');
 $prazo = filter_input(INPUT_POST, 'prazo');
 
+//Conta a quantidade de tarefas
 $sql = $pdo->query("SELECT COUNT(id) FROM tarefa");
 $qtd_tarefas = $sql->fetchColumn();
+
+//Valida o custo
+if ($custo < 0) {
+    echo("");
+    echo "<script>alert('Seu custo não pode ser negativo.');location.href=\"index.php\";</script>";
+    exit;
+    //header("Location: index.php");
+}
+
+//Valida o nome
+$sql = $pdo->prepare("SELECT id FROM tarefa WHERE nome = :nome");
+$sql->bindValue(':nome', $nome);
+$sql->execute();
+$valida_nome = $sql->fetchColumn();
+
+if ($valida_nome && $valida_nome != $id) {
+    echo "<script>alert('Essa tarefa já existe!');location.href=\"index.php\";</script>";
+    exit;
+}
 
 //Edita os dados da tarefa selecionada
 if ($id && $nome != "" && $custo && $prazo) {
@@ -51,3 +72,4 @@ else if ($ordem > 0 && $ordem <= $qtd_tarefas) {
     header("Location: index.php");
     exit;
 }
+?>
